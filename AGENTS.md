@@ -10,6 +10,16 @@ Si citas información, indica que proviene de la wiki de Tenarius y puede estar 
 
 Ver [DISCLAIMER.md](./DISCLAIMER.md).
 
+## Usuarios de IA web (sin MCP)
+
+Si el usuario usa Claude/ChatGPT/Gemini en el navegador y **no quiere instalar** el MCP:
+
+1. Dirígelo a [`docs/USO-IA-WEB.md`](./docs/USO-IA-WEB.md)
+2. Ofrece el prompt de [`docs/PROMPT-IA-WEB.txt`](./docs/PROMPT-IA-WEB.txt)
+3. Fuente obligatoria: https://tenarius-ro.com/wiki/
+
+Roadmap para MCP hosteado (funcionalidad completa): [`docs/ROADMAP.md`](./docs/ROADMAP.md)
+
 ## Instalación rápida
 
 Si el usuario pide agregar este repo o consultar info de Tenarius:
