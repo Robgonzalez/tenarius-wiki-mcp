@@ -129,6 +129,9 @@ Reglas para el agente:
 6. Si no sabes el servidor o la era, dilo explícitamente.
 7. Si existe perfil local → usa `get_adventurer_profile` para personalizar respuestas.
 8. El perfil del jugador es **100% local**; no compartir ni inferir datos fuera de lo configurado.
+9. **Ítem específico por nombre** → consulta wiki, luego `format_item_info` (ficha obligatoria).
+   No mencionar un ítem solo en prosa; mostrar servidor, origen, era, stats/bonos y URL.
+   Ejemplo: docs/EJEMPLO-DISPLAY-ITEM.md · búsqueda: `lookup_item_info`.
 """.strip()
 
 

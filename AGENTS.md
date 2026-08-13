@@ -41,6 +41,17 @@ Ver [DISCLAIMER.md](./DISCLAIMER.md) · [docs/FUENTES-RO.md](./docs/FUENTES-RO.m
 
 Configurar: `./scripts/configure-profile.sh` · Docs: [docs/PERFIL-AVENTURERO.md](./docs/PERFIL-AVENTURERO.md)
 
+### Display de ítems (regla)
+
+| Tool | Cuándo |
+|------|--------|
+| `lookup_item_info` | Buscar ítem en wiki Tenarius + guía de ficha |
+| `format_item_info` | Generar ficha markdown (obligatoria al nombrar un ítem concreto) |
+
+Al **nombrar un ítem concreto**, usar `lookup_item_info` → wiki → **`format_item_info`**.
+
+Ejemplo: [docs/EJEMPLO-DISPLAY-ITEM.md](./docs/EJEMPLO-DISPLAY-ITEM.md)
+
 ## Reglas de consulta
 
 | Tipo | Fuente | Aplica Tenarius |

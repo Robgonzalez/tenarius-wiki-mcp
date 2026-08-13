@@ -182,6 +182,10 @@ Flujo: `search_wiki` → `get_wiki_summary` → `get_wiki_page`
 | `get_ro_reference_page` | Wikitext de referencia |
 | `search_ro_web` | Referencias + web (opcional `BRAVE_API_KEY`) |
 | `get_adventurer_profile` | Perfil local del jugador (100% en tu PC) |
+| `format_item_info` | Ficha markdown de un ítem específico (obligatoria al nombrarlo) |
+| `lookup_item_info` | Buscar ítem en wiki Tenarius + guía de ficha |
+
+Ver ejemplo: [`docs/EJEMPLO-DISPLAY-ITEM.md`](./docs/EJEMPLO-DISPLAY-ITEM.md)
 
 Todas las respuestas incluyen **metadatos de fuente** (servidor, era, aplicabilidad a Tenarius).
 

@@ -20,6 +20,7 @@ from tenarius_wiki_mcp.sources import (
     TARGET_ERA,
     TENARIUS,
 )
+from tenarius_wiki_mcp.item_display import format_item_card, format_set_piece_cards
 from tenarius_wiki_mcp.profile import (
     PRIVACY_NOTICE,
     build_instructions,
@@ -150,6 +151,124 @@ def get_wiki_page(title: str) -> str:
         return str(exc)
     except Exception as exc:
         return f"Error al obtener página Tenarius: {exc}"
+
+
+# --- Display de ítems ---
+
+
+@mcp.tool()
+def format_item_info(
+    name: str,
+    item_type: str = "",
+    server: str = "Tenarius RO",
+    content_origin: str = "unknown",
+    era: str = "Pre-Renewal",
+    tenarius_applies: str = "verify",
+    slot: str = "",
+    stats: str = "",
+    set_name: str = "",
+    set_pieces: str = "",
+    set_combo: str = "",
+    job_bonuses: str = "",
+    requirements: str = "",
+    obtain: str = "",
+    warnings: str = "",
+    source_url: str = "",
+    notes: str = "",
+) -> str:
+    """Genera ficha markdown estándar para un ítem específico.
+
+    **Regla:** úsala (o muestra el mismo formato) cada vez que nombres un ítem
+    concreto en tu respuesta — no solo menciones el nombre en prosa.
+
+    Args:
+        name: Nombre del ítem (ej. "Fighting Set Armor", "Snake Head").
+        item_type: Armor, weapon, headgear, material, consumable, etc.
+        server: Servidor al que aplica la info (Tenarius RO, iRO, desconocido).
+        content_origin: tenarius_custom | ro_vanilla | mixed | unknown
+        era: Pre-Renewal, Renewal, etc.
+        tenarius_applies: yes | verify | no | unknown
+        slot: Slot de equipamiento si aplica.
+        stats: Stats de la pieza.
+        set_name: Nombre del set si es parte de uno.
+        set_pieces: Piezas que componen el set.
+        set_combo: Bonus al equipar el set completo.
+        job_bonuses: Bonos condicionados por job/clase/skills.
+        requirements: Nivel, stats, skills requeridas.
+        obtain: Craft, drop, NPC, quest.
+        warnings: PvP, Renewal, no stack, etc.
+        source_url: URL de la wiki consultada.
+        notes: Contexto extra.
+    """
+    origin = content_origin if content_origin in (
+        "tenarius_custom", "ro_vanilla", "mixed", "unknown"
+    ) else "unknown"
+    applies = tenarius_applies if tenarius_applies in (
+        "yes", "verify", "no", "unknown"
+    ) else "unknown"
+
+    return format_item_card(
+        name=name,
+        item_type=item_type,
+        server=server,
+        content_origin=origin,  # type: ignore[arg-type]
+        era=era,
+        tenarius_applies=applies,  # type: ignore[arg-type]
+        slot=slot,
+        stats=stats,
+        set_name=set_name,
+        set_pieces=set_pieces,
+        set_combo=set_combo,
+        job_bonuses=job_bonuses,
+        requirements=requirements,
+        obtain=obtain,
+        warnings=warnings,
+        source_url=source_url,
+        notes=notes,
+    )
+
+
+@mcp.tool()
+def lookup_item_info(item_name: str) -> str:
+    """Busca un ítem en la wiki Tenarius y devuelve ficha + enlace a seguir.
+
+    Si no hay página dedicada, indica cómo completar con get_wiki_page o
+    format_item_info tras leer el artículo padre (ej. Set de Equipamiento).
+
+    Args:
+        item_name: Nombre aproximado del ítem.
+    """
+    try:
+        results = search(TENARIUS, item_name, limit=5)
+        header = format_source_block(TENARIUS)
+
+        if not results:
+            return (
+                f"{header}\n"
+                f"No hay página directa para '{item_name}'.\n\n"
+                "**Sugerencias:**\n"
+                "- Sets Tenarius → `get_wiki_page('Set de Equipamiento')`\n"
+                "- Buscar en español (ej. 'Set de Batalla', 'Oficios')\n"
+                "- RO vanilla → `search_ro_reference`\n"
+                "- Luego completar con `format_item_info(...)`\n\n"
+                "Ejemplo de formato: docs/EJEMPLO-DISPLAY-ITEM.md"
+            )
+
+        lines = [header, f"## Búsqueda: `{item_name}`", ""]
+        for item in results:
+            title = item["title"]
+            snippet = strip_html(item.get("snippet", ""))
+            url = page_url(TENARIUS, title)
+            lines.append(f"- **{title}** — {snippet}")
+            lines.append(f"  URL: {url}")
+
+        best = results[0]["title"]
+        lines.append(f"\nSiguiente: `get_wiki_summary('{best}')` o `get_wiki_page('{best}')`")
+        lines.append("Luego: `format_item_info(...)` con los campos extraídos.")
+        lines.append("\nVer ejemplo visual: docs/EJEMPLO-DISPLAY-ITEM.md")
+        return "\n".join(lines)
+    except Exception as exc:
+        return f"Error al buscar ítem: {exc}"
 
 
 # --- RO vanilla / referencia web ---
