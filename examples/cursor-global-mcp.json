@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "tenarius-wiki": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "/ruta/absoluta/a/tenarius-wiki-mcp",
+        "tenarius-wiki-mcp"
+      ]
+    }
+  }
+}

@@ -1,0 +1,24 @@
+[project]
+name = "tenarius-wiki-mcp"
+version = "1.0.0"
+description = "MCP open source (no oficial) para consultar la wiki pública de Tenarius RO"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "tenarius-wiki-mcp contributors" }]
+keywords = ["mcp", "ragnarok", "tenarius", "wiki", "mediawiki"]
+dependencies = [
+    "mcp[cli]>=1.27,<2.0.0",
+    "httpx>=0.27.0",
+    "beautifulsoup4>=4.12.0",
+]
+
+[project.scripts]
+tenarius-wiki-mcp = "tenarius_wiki_mcp.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tenarius_wiki_mcp"]

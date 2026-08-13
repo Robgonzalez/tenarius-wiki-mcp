@@ -1,0 +1,9 @@
+{
+  "mcp": {
+    "tenarius-wiki": {
+      "type": "local",
+      "command": ["uv", "run", "--directory", "/ruta/absoluta/a/tenarius-wiki-mcp", "tenarius-wiki-mcp"],
+      "enabled": true
+    }
+  }
+}
