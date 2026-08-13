@@ -3,9 +3,9 @@
 Guía para jugadores que usan **Claude web**, **ChatGPT**, **Gemini** u otros chats en el navegador,
 **sin instalar** el MCP ni clonar este repositorio.
 
-> **Estado actual:** esta es la opción recomendada para IA web.
-> Para funcionalidad completa (`search_wiki` → `get_wiki_summary` → `get_wiki_page`), ver
-> [ROADMAP.md](./ROADMAP.md) — el MCP hosteado está planificado a futuro.
+> **Estado actual:** usa el **prompt** de abajo sin instalar nada.
+> **¿Quieres MCP completo?** Instala **Cursor gratis** (solo correo) → **[GUIA-CURSOR-MCP.md](./GUIA-CURSOR-MCP.md)**
+> **Futuro:** MCP hosteado en la nube → [ROADMAP.md](./ROADMAP.md)
 
 ## Enfoque: wiki directa + reglas claras al agente
 
@@ -144,7 +144,8 @@ Mi pregunta: [tu duda]
 
 ## Próximo paso del proyecto
 
-Cuando el MCP esté **hosteado públicamente**, los usuarios web podrán conectarlo como
-conector remoto en Claude (Customize → Connectors) y recuperar todas las herramientas.
+- **MCP completo sin instalar:** [GUIA-CURSOR-MCP.md](./GUIA-CURSOR-MCP.md) (Cursor gratis + este repo)
+- **Solo navegador, sin instalar:** sigue abajo con el prompt
+- **Futuro:** MCP hosteado en la nube → [ROADMAP.md](./ROADMAP.md)
 
-Seguimiento: [ROADMAP.md](./ROADMAP.md)
+---

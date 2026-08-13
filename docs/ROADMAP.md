@@ -27,7 +27,7 @@ Documentación y difusión del método sin instalación.
 - [x] Crear guía `docs/USO-IA-WEB.md`
 - [x] Prompts reusables para Claude / ChatGPT / Gemini
 - [x] Tabla Tenarius custom vs RO original
-- [x] Enlazar guía desde README principal (sección visible)
+- [x] Guía Cursor gratis + MCP: `docs/GUIA-CURSOR-MCP.md` (README Opción D)
 - [ ] Añadir enlace en descripción del repo de GitHub
 - [ ] Compartir prompt reusable en Discord/comunidad Tenarius (cuando aplique)
 - [ ] Recopilar feedback: ¿qué preguntas fallan más sin MCP?

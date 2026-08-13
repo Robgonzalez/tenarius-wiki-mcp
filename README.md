@@ -11,7 +11,7 @@ Servidor [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) **open
 Cada respuesta indica **servidor**, **era** (Pre-Renewal / Renewal) y **si aplica a Tenarius**.
 
 - **IA local** (Cursor, Claude Desktop): instala el MCP y consulta con herramientas estructuradas.
-- **IA web** (Claude.ai, ChatGPT, Gemini): usa el [prompt sin instalar nada](#opción-c--ia-web-sin-mcp).
+- **IA web** (Claude.ai, ChatGPT, Gemini): [prompt rápido](#opción-c--ia-web-sin-mcp) o [instalar Cursor gratis](#opción-d--de-ia-web-a-cursor-gratis--mcp-completo) para MCP completo.
 
 > **⚠️ Proyecto comunitario — no oficial**
 >
@@ -40,7 +40,8 @@ Elige según cómo uses la IA:
 | Perfil | Qué hacer |
 |--------|-----------|
 | **IA local** (Cursor, Claude Desktop, OpenCode) | Instalar el MCP → [Opción A/B abajo](#opción-ab--ia-local-mcp) |
-| **IA web** (Claude.ai, ChatGPT, Gemini en navegador) | Sin instalar nada → [Opción C abajo](#opción-c--ia-web-sin-mcp) |
+| **IA web** (Claude.ai, ChatGPT, Gemini) | Prompt rápido → [Opción C](#opción-c--ia-web-sin-mcp) |
+| **IA web pero quieres MCP completo (gratis)** | Instalar **Cursor** + MCP → [Opción D](#opción-d--de-ia-web-a-cursor-gratis--mcp-completo) |
 
 ---
 
@@ -126,10 +127,37 @@ Abre el artículo en https://tenarius-ro.com/wiki/, copia el texto y pégalo en 
 | Búsqueda en wiki | Depende del chat | `search_wiki` estructurado |
 | Mezcla otras fuentes | Posible | Menor riesgo |
 
-Guía ampliada: [`docs/USO-IA-WEB.md`](./docs/USO-IA-WEB.md) · Prompt en texto plano: [`docs/PROMPT-IA-WEB.txt`](./docs/PROMPT-IA-WEB.txt)
+Guía ampliada: [`docs/USO-IA-WEB.md`](./docs/USO-IA-WEB.md) · Prompt: [`docs/PROMPT-IA-WEB.txt`](./docs/PROMPT-IA-WEB.txt)
 
-> **Futuro:** planeamos hostear el MCP para que usuarios web tengan funcionalidad completa vía conector en Claude.
+> **¿Quieres más que un prompt?** Instala **Cursor gratis** (solo correo) y el MCP completo: [Opción D](#opción-d--de-ia-web-a-cursor-gratis--mcp-completo).
+
+> **Futuro:** MCP hosteado en la nube para conectar desde Claude web sin instalar nada.
 > Seguimiento en [`docs/ROADMAP.md`](./docs/ROADMAP.md).
+
+---
+
+## Opción D — De IA web a Cursor (gratis) + MCP completo
+
+**Para jugadores que usan ChatGPT/Claude en el navegador** y quieren un **agente de consultas** con wiki Tenarius, referencias RO y perfil local — sin pagar licencias de IDE.
+
+### Resumen (5 minutos)
+
+1. **Descargar Cursor** — [cursor.com](https://cursor.com) · registro **gratis con tu correo**
+2. **Crear carpeta** y clonar este repo:
+   ```bash
+   mkdir -p ~/TenariusRO && cd ~/TenariusRO
+   git clone https://github.com/Robgonzalez/tenarius-wiki-mcp.git
+   ```
+3. **Abrir en Cursor** — `File → Open Folder` → carpeta `tenarius-wiki-mcp`
+4. **Instalar MCP** — terminal en Cursor: `./scripts/setup.sh`
+5. **Reiniciar Cursor** → Settings → Tools & MCP → verificar `tenarius-wiki` activo
+6. **Preguntar al agente** — ej.: *"¿Cómo funciona el Fighting Set en Tenarius?"*
+
+### Guía paso a paso (publicación interna)
+
+📖 **[`docs/GUIA-CURSOR-MCP.md`](./docs/GUIA-CURSOR-MCP.md)** — instalación de Cursor, carpeta de proyecto, MCP, perfil de aventurero y primeras consultas.
+
+Incluye solución de problemas y notas de privacidad (perfil 100% local).
 
 ---
 
@@ -222,8 +250,9 @@ tenarius-wiki-mcp/
 ├── AGENTS.md              # Instrucciones para agentes de IA
 ├── DISCLAIMER.md          # Aviso legal — no oficial
 ├── docs/
-│   ├── USO-IA-WEB.md      # Guía IA web sin MCP (workaround actual)
-│   ├── PROMPT-IA-WEB.txt  # Prompt reusable
+│   ├── USO-IA-WEB.md      # Guía IA web sin MCP
+│   ├── GUIA-CURSOR-MCP.md # Cursor gratis + MCP (desde IA web)
+│   ├── PROMPT-IA-WEB.txt
 │   ├── FUENTES-RO.md      # Servidores, eras, atribución
 │   ├── PERFIL-AVENTURERO.md # Perfil local (privacidad)
 │   └── ROADMAP.md         # Tasklist / plan MCP hosteado
