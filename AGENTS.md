@@ -33,6 +33,14 @@ Ver [DISCLAIMER.md](./DISCLAIMER.md) · [docs/FUENTES-RO.md](./docs/FUENTES-RO.m
 | `get_ro_reference_page` | Detalle wikitext referencia |
 | `search_ro_web` | Búsqueda amplia (+ Brave si `BRAVE_API_KEY`) |
 
+### Perfil del jugador (100% local)
+
+| Tool | Cuándo |
+|------|--------|
+| `get_adventurer_profile` | Personalizar builds/objetivos — datos solo en `~/.config/tenarius-wiki-mcp/` |
+
+Configurar: `./scripts/configure-profile.sh` · Docs: [docs/PERFIL-AVENTURERO.md](./docs/PERFIL-AVENTURERO.md)
+
 ## Reglas de consulta
 
 | Tipo | Fuente | Aplica Tenarius |
@@ -46,10 +54,10 @@ Ver [DISCLAIMER.md](./DISCLAIMER.md) · [docs/FUENTES-RO.md](./docs/FUENTES-RO.m
 
 ## Instalación rápida
 
-1. Clonar repo · `uv sync` o `pip install -r requirements.txt`
+1. Clonar repo · `./scripts/setup.sh` (ofrece perfil opcional)
 2. Registrar MCP (`.cursor/mcp.json` o global)
 3. Reiniciar editor
-4. Verificar tools listadas arriba
+4. Verificar tools · opcional `get_adventurer_profile`
 
 ## Flujos
 

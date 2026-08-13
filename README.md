@@ -64,6 +64,21 @@ cd tenarius-wiki-mcp
 
 Abre la carpeta en **Cursor** — [`.cursor/mcp.json`](./.cursor/mcp.json) ya registra el servidor.
 
+### Perfil de aventurero (opcional, 100% local)
+
+Durante `./scripts/setup.sh` puedes configurar tu personaje. Mejora builds y recomendaciones **sin enviar datos a internet**:
+
+- Guardado en `~/.config/tenarius-wiki-mcp/adventurer-profile.json`
+- Open source, sin fines comerciales — solo tu PC lee el archivo
+- Tool MCP: `get_adventurer_profile`
+
+```bash
+./scripts/configure-profile.sh      # configurar o reconfigurar
+./scripts/configure-profile.sh --edit
+```
+
+Detalle: [`docs/PERFIL-AVENTURERO.md`](./docs/PERFIL-AVENTURERO.md)
+
 ---
 
 ## Opción C — IA web (sin MCP)
@@ -138,6 +153,7 @@ Flujo: `search_wiki` → `get_wiki_summary` → `get_wiki_page`
 | `get_ro_reference_summary` | Resumen (`source_id`: `irowiki` o `fandom`) |
 | `get_ro_reference_page` | Wikitext de referencia |
 | `search_ro_web` | Referencias + web (opcional `BRAVE_API_KEY`) |
+| `get_adventurer_profile` | Perfil local del jugador (100% en tu PC) |
 
 Todas las respuestas incluyen **metadatos de fuente** (servidor, era, aplicabilidad a Tenarius).
 
@@ -209,6 +225,7 @@ tenarius-wiki-mcp/
 │   ├── USO-IA-WEB.md      # Guía IA web sin MCP (workaround actual)
 │   ├── PROMPT-IA-WEB.txt  # Prompt reusable
 │   ├── FUENTES-RO.md      # Servidores, eras, atribución
+│   ├── PERFIL-AVENTURERO.md # Perfil local (privacidad)
 │   └── ROADMAP.md         # Tasklist / plan MCP hosteado
 ├── src/tenarius_wiki_mcp/
 ├── examples/

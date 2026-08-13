@@ -34,6 +34,11 @@ de datos consultada. No implica endorsement ni relación comercial.
 - **Verifica siempre en el juego** información crítica (crafteos, precios, builds PvP, etc.).
 - Los mantenedores de este repo **no garantizan** la exactitud del contenido de la wiki.
 
+## Datos locales del jugador
+
+El **perfil de aventurero** (opcional) se guarda en `~/.config/tenarius-wiki-mcp/` en la PC del usuario.
+Este proyecto **no recibe, almacena ni transmite** esos datos. Ver [docs/PERFIL-AVENTURERO.md](./docs/PERFIL-AVENTURERO.md).
+
 ## Sin garantías
 
 El software se proporciona **"tal cual"**, bajo licencia MIT. Ver [LICENSE](./LICENSE).

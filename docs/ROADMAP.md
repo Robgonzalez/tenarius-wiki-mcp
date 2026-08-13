@@ -13,7 +13,7 @@ Plan de evolución del proyecto. Actualizar al completar tareas.
 - [x] Herramientas Tenarius: `search_wiki`, `get_wiki_summary`, `get_wiki_page`
 - [x] Herramientas RO referencia Pre-Renewal: `search_ro_reference`, `get_ro_reference_*`, `search_ro_web`
 - [x] Metadatos de fuente (servidor, era, aplicabilidad Tenarius) en cada respuesta
-- [x] Documentación fuentes: `docs/FUENTES-RO.md`
+- [x] Perfil de aventurero local opcional (`configure-profile.sh`, `get_adventurer_profile`)
 - [x] Repo open source en GitHub
 - [x] Disclaimer: proyecto comunitario, no oficial
 - [x] Guía IA web sin MCP → [USO-IA-WEB.md](./USO-IA-WEB.md)

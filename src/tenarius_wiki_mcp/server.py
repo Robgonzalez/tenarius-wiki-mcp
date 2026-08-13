@@ -20,29 +20,18 @@ from tenarius_wiki_mcp.sources import (
     TARGET_ERA,
     TENARIUS,
 )
+from tenarius_wiki_mcp.profile import (
+    PRIVACY_NOTICE,
+    build_instructions,
+    format_profile_for_agent,
+    load_profile,
+    profile_path,
+)
 from tenarius_wiki_mcp.web_search import brave_search
-
-INSTRUCTIONS = f"""
-Servidor MCP comunitario (NO OFICIAL). No afiliado a Tenarius RO, Gravity ni Ragnarok Online.
-
-Contexto Tenarius: servidor privado **{TARGET_ERA}**, referencia hasta **Episodio {TARGET_EPISODE_MAX}**.
-
-Reglas para el agente:
-1. **Siempre** indica servidor, era (Pre-Renewal / Renewal / mixto) y si aplica a Tenarius.
-2. Contenido **custom Tenarius** (Oficios, Sets, Tenarius Coin, rankings, etc.):
-   → tools `search_wiki`, `get_wiki_summary`, `get_wiki_page`.
-3. Mecánicas **vanilla RO** (clases, skills, items clásicos, quests oficiales):
-   → `search_ro_reference` / `get_ro_reference_*` (iRO Wiki, Fandom).
-4. Búsqueda web amplia: `search_ro_web` (opcional Brave API si BRAVE_API_KEY está configurada).
-5. Si la fuente es **Renewal** o posterior al Ep. {TARGET_EPISODE_MAX}, **destácalo** — puede no existir en Tenarius.
-6. Si no sabes el servidor o la era, dilo explícitamente; no asumas que aplica a Tenarius.
-7. Flujo Tenarius: search_wiki → get_wiki_summary → get_wiki_page.
-8. Flujo RO vanilla: search_ro_reference → get_ro_reference_summary → get_ro_reference_page.
-""".strip()
 
 mcp = FastMCP(
     "TenariusRO Wiki (unofficial)",
-    instructions=INSTRUCTIONS,
+    instructions=build_instructions(),
 )
 
 
@@ -52,6 +41,32 @@ def _resolve_source(source_id: str):
         ids = ", ".join(sorted(ALL_SOURCES))
         raise ValueError(f"Fuente desconocida '{source_id}'. Válidas: {ids}")
     return source
+
+
+# --- Perfil local del aventurero ---
+
+
+@mcp.tool()
+def get_adventurer_profile() -> str:
+    """Lee el perfil del aventurero configurado localmente en esta máquina.
+
+    Datos 100% locales (~/.config/tenarius-wiki-mcp/). No se envían a internet.
+    Usar para personalizar builds, farming y objetivos del jugador.
+    """
+    profile = load_profile()
+    if not profile:
+        return (
+            f"{PRIVACY_NOTICE}\n\n"
+            "No hay perfil configurado.\n"
+            "El jugador puede ejecutar `./scripts/configure-profile.sh` "
+            "(100% local, open source, sin fines comerciales).\n"
+            f"Ruta del archivo: {profile_path()}"
+        )
+    return (
+        f"{PRIVACY_NOTICE}\n\n"
+        f"{format_profile_for_agent(profile)}\n\n"
+        f"_Archivo local:_ `{profile_path()}`"
+    )
 
 
 # --- Tenarius (servidor privado) ---

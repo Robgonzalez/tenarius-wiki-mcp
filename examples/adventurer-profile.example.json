@@ -1,0 +1,15 @@
+{
+  "_comment": "Ejemplo — NO contiene datos reales. El perfil real va en ~/.config/tenarius-wiki-mcp/",
+  "version": 1,
+  "character_name": "TuPersonaje",
+  "class_name": "Professor",
+  "base_level": 99,
+  "job_level": 70,
+  "server": "Tenarius RO",
+  "notable_gear": "Fighting Set, Snake Head",
+  "goals_short": "Top 1 ranking Fisherman",
+  "goals_medium": "Mejorar equipo MVP",
+  "play_style": "PvM solo, farming",
+  "language": "es",
+  "notes": "Prefiero respuestas en español"
+}

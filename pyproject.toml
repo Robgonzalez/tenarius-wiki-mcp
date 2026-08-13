@@ -1,6 +1,6 @@
 [project]
 name = "tenarius-wiki-mcp"
-version = "1.1.0"
+version = "1.2.0"
 description = "MCP open source: wiki Tenarius + referencias RO Pre-Renewal (Ep. 13.2) con atribución de fuente"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -15,6 +15,7 @@ dependencies = [
 
 [project.scripts]
 tenarius-wiki-mcp = "tenarius_wiki_mcp.server:main"
+tenarius-wiki-profile = "tenarius_wiki_mcp.configure_profile:main"
 
 [build-system]
 requires = ["hatchling"]
