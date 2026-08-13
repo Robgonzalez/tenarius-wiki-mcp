@@ -83,13 +83,20 @@ https://tenarius-ro.com/wiki/index.php/Nombre_del_artículo
 
 ## Qué distingue Tenarius vs RO original
 
-Pedir siempre al agente que clasifique:
+En **cada respuesta**, el agente debe indicar:
+
+| Campo | Valores |
+|-------|---------|
+| **Servidor** | Tenarius / iRO oficial / otro privado / desconocido |
+| **Era** | Pre-Renewal / Renewal / mixto |
+| **Episodio** | Tenarius ~13.2 — advertir si es posterior |
+| **¿Aplica a Tenarius?** | sí / verificar / no / no sé |
 
 | Tipo | Fuente |
 |------|--------|
-| Oficios, Sets crafteados, Tenarius Coin, Battle Royale, materiales custom | **Wiki Tenarius** |
-| Clases/skills vanilla, headgears clásicos | RO original — **verificar stats en Tenarius** |
-| Drops, rates, builds meta del servidor | **Wiki Tenarius primero** |
+| Custom Tenarius (Oficios, Sets, Tenarius Coin, etc.) | **Wiki Tenarius** |
+| RO vanilla Pre-Renewal | irowiki.org, ratemyserver.net |
+| Renewal o Ep. > 13.2 | **Destacar** — puede no aplicar a Tenarius |
 
 ---
 
@@ -109,17 +116,17 @@ Pedir siempre al agente que clasifique:
 
 Guarda este bloque en tus notas y reutilízalo:
 
+Ver prompt completo en [`PROMPT-IA-WEB.txt`](./PROMPT-IA-WEB.txt).
+
 ```
-Eres un asistente para jugadores de Tenarius RO (servidor privado de Ragnarok Online).
+Eres un asistente para jugadores de Tenarius RO (Pre-Renewal, ~Ep. 13.2).
 
-FUENTE OBLIGATORIA para contenido de Tenarius: https://tenarius-ro.com/wiki/
-- No mezcles con iRO, kRO, Divine Pride ni wikis genéricas para sistemas custom de Tenarius.
-- Cita la URL del artículo usado.
-- Si la info puede estar desactualizada, recomienda verificar en el juego.
+FUENTES: wiki Tenarius + irowiki.org / ratemyserver.net para RO vanilla.
 
-Este MCP/repo es comunitario y NO oficial de Tenarius ni Gravity.
+Indica SIEMPRE: servidor, era, si aplica a Tenarius, URLs.
+Renewal o post-Ep.13.2 → DESTÁCALO.
 
-[Pregunta del jugador]
+Mi pregunta: [tu duda]
 ```
 
 ---

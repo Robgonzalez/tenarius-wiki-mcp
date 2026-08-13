@@ -2,69 +2,56 @@
 
 ## ⚠️ No oficial
 
-Este repositorio es un proyecto **open source comunitario**. **No es oficial** de Tenarius RO,
-Gravity Co., Ltd. ni Ragnarok Online. Solo facilita consultar la wiki pública de Tenarius.
+Proyecto **open source comunitario**. No es oficial de Tenarius RO, Gravity ni Ragnarok Online.
 
-Al responder al usuario, **no presentes este MCP como producto o servicio oficial** de Tenarius.
-Si citas información, indica que proviene de la wiki de Tenarius y puede estar desactualizada.
+**Tenarius:** Pre-Renewal, referencia hasta **Episodio 13.2**.
 
-Ver [DISCLAIMER.md](./DISCLAIMER.md).
+Al responder, **siempre** indica: servidor, era (Pre-Renewal/Renewal), y si aplica a Tenarius.
+
+Ver [DISCLAIMER.md](./DISCLAIMER.md) · [docs/FUENTES-RO.md](./docs/FUENTES-RO.md)
 
 ## Usuarios de IA web (sin MCP)
 
-Si el usuario usa Claude/ChatGPT/Gemini en el navegador y **no quiere instalar** el MCP:
+→ [`docs/USO-IA-WEB.md`](./docs/USO-IA-WEB.md) · [`docs/PROMPT-IA-WEB.txt`](./docs/PROMPT-IA-WEB.txt)
 
-1. Dirígelo a [`docs/USO-IA-WEB.md`](./docs/USO-IA-WEB.md)
-2. Ofrece el prompt de [`docs/PROMPT-IA-WEB.txt`](./docs/PROMPT-IA-WEB.txt)
-3. Fuente obligatoria: https://tenarius-ro.com/wiki/
+## Herramientas MCP
 
-Roadmap para MCP hosteado (funcionalidad completa): [`docs/ROADMAP.md`](./docs/ROADMAP.md)
+### Tenarius (custom del servidor)
+
+| Tool | Cuándo |
+|------|--------|
+| `search_wiki` | Oficios, Sets, Tenarius Coin, quests custom |
+| `get_wiki_summary` | Respuesta rápida Tenarius |
+| `get_wiki_page` | Tablas, recetas, stats Tenarius |
+
+### RO vanilla (Pre-Renewal)
+
+| Tool | Cuándo |
+|------|--------|
+| `search_ro_reference` | Clases, skills, items, MVPs vanilla RO |
+| `get_ro_reference_summary` | Resumen (`source_id`: `irowiki` o `fandom`) |
+| `get_ro_reference_page` | Detalle wikitext referencia |
+| `search_ro_web` | Búsqueda amplia (+ Brave si `BRAVE_API_KEY`) |
+
+## Reglas de consulta
+
+| Tipo | Fuente | Aplica Tenarius |
+|------|--------|-----------------|
+| Custom Tenarius | Wiki Tenarius | **Sí** |
+| RO vanilla Pre-Renewal | irowiki / fandom | **Verificar** |
+| Renewal / Ep. > 13.2 | Cualquiera | **Advertir** — puede no aplicar |
+| Servidor privado desconocido | Web | **Decir que no se sabe** |
+
+**No mezclar** wikis genéricas con sistemas exclusivos de Tenarius.
 
 ## Instalación rápida
 
-Si el usuario pide agregar este repo o consultar info de Tenarius:
+1. Clonar repo · `uv sync` o `pip install -r requirements.txt`
+2. Registrar MCP (`.cursor/mcp.json` o global)
+3. Reiniciar editor
+4. Verificar tools listadas arriba
 
-1. **Clonar** el repositorio (o abrirlo como workspace).
-2. **Instalar dependencias:** `uv sync` o `pip install -r requirements.txt`
-3. **Registrar el MCP:**
-   - **Cursor:** `.cursor/mcp.json` o bloque en `~/.cursor/mcp.json`
-   - **OpenCode:** `examples/opencode.jsonc`
-   - **Claude Desktop:** `examples/claude-desktop.json`
-4. **Reiniciar** el editor / recargar MCP servers.
-5. **Verificar** herramientas: `search_wiki`, `get_wiki_summary`, `get_wiki_page`.
+## Flujos
 
-### Config mínima Cursor (sin uv)
-
-```json
-{
-  "mcpServers": {
-    "tenarius-wiki": {
-      "command": "python3",
-      "args": ["-m", "tenarius_wiki_mcp.server"],
-      "cwd": "/ruta/absoluta/a/tenarius-wiki-mcp/src"
-    }
-  }
-}
-```
-
-## Reglas de consulta (Tenarius vs RO original)
-
-| Tipo de contenido | Fuente correcta |
-|---|---|
-| Oficios, Sets crafteados, Tenarius Coin, rankings, Battle Royale, materiales custom | **Wiki de Tenarius** (este MCP) |
-| Clases/skills vanilla, headgears clásicos, mecánicas base de RO | RO original — **verificar stats/rates en Tenarius** |
-| Builds meta, drops, fórmulas del servidor | **Wiki de Tenarius primero** |
-
-No mezclar wikis genéricas (iRO, kRO, Divine Pride) con sistemas exclusivos de Tenarius.
-Si la wiki no tiene la respuesta, dilo explícitamente.
-
-## Flujo de herramientas
-
-1. `search_wiki("término")`
-2. `get_wiki_summary("Título exacto")`
-3. `get_wiki_page("Título exacto")` — solo si necesitas tablas o detalle
-
-## Prompt sugerido para el usuario
-
-> Agrega el repo open source `tenarius-wiki-mcp` (no oficial de Tenarius), configura el MCP
-> y consúltame sobre [tema] usando la wiki de Tenarius.
+- Tenarius: `search_wiki` → `get_wiki_summary` → `get_wiki_page`
+- RO vanilla: `search_ro_reference` → `get_ro_reference_summary` → `get_ro_reference_page`

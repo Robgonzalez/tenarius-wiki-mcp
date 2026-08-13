@@ -10,7 +10,10 @@ Plan de evolución del proyecto. Actualizar al completar tareas.
 ## Fase 1 — Disponible hoy ✅
 
 - [x] Servidor MCP local (stdio) para Cursor / Claude Desktop
-- [x] Herramientas: `search_wiki`, `get_wiki_summary`, `get_wiki_page`
+- [x] Herramientas Tenarius: `search_wiki`, `get_wiki_summary`, `get_wiki_page`
+- [x] Herramientas RO referencia Pre-Renewal: `search_ro_reference`, `get_ro_reference_*`, `search_ro_web`
+- [x] Metadatos de fuente (servidor, era, aplicabilidad Tenarius) en cada respuesta
+- [x] Documentación fuentes: `docs/FUENTES-RO.md`
 - [x] Repo open source en GitHub
 - [x] Disclaimer: proyecto comunitario, no oficial
 - [x] Guía IA web sin MCP → [USO-IA-WEB.md](./USO-IA-WEB.md)

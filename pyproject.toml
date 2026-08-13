@@ -1,7 +1,7 @@
 [project]
 name = "tenarius-wiki-mcp"
-version = "1.0.0"
-description = "MCP open source (no oficial) para consultar la wiki pública de Tenarius RO"
+version = "1.1.0"
+description = "MCP open source: wiki Tenarius + referencias RO Pre-Renewal (Ep. 13.2) con atribución de fuente"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }

@@ -3,7 +3,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Open Source](https://img.shields.io/badge/Open%20Source-community-green.svg)](./CONTRIBUTING.md)
 
-Servidor [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) **open source** para consultar la wiki pública de [Tenarius RO](https://tenarius-ro.com/wiki/).
+Servidor [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) **open source** para consultar:
+
+- **Wiki Tenarius RO** — contenido del servidor privado
+- **Referencias RO Pre-Renewal** — iRO Wiki, Fandom y web (hasta ~Episodio 13.2)
+
+Cada respuesta indica **servidor**, **era** (Pre-Renewal / Renewal) y **si aplica a Tenarius**.
 
 - **IA local** (Cursor, Claude Desktop): instala el MCP y consulta con herramientas estructuradas.
 - **IA web** (Claude.ai, ChatGPT, Gemini): usa el [prompt sin instalar nada](#opción-c--ia-web-sin-mcp).
@@ -75,17 +80,20 @@ No hace falta clonar este repo ni instalar Python.
 ### Prompt (copiar y pegar)
 
 ```
-Eres un asistente para jugadores de Tenarius RO (servidor privado de Ragnarok Online).
+Eres un asistente para jugadores de Tenarius RO (servidor privado Pre-Renewal, ~Ep. 13.2).
 
-FUENTE OBLIGATORIA para contenido de Tenarius: https://tenarius-ro.com/wiki/
-- Usa navegación web para consultar artículos de esa wiki.
-- NO mezcles con iRO, kRO, Divine Pride ni wikis genéricas para sistemas custom de Tenarius
-  (Oficios, Sets crafteados, Tenarius Coin, rankings, Battle Royale, materiales custom).
-- Para mecánicas vanilla de RO, indica que pueden diferir en Tenarius y prioriza la wiki del servidor.
-- Cita la URL del artículo que usaste.
-- Si no encuentras la respuesta en la wiki, dilo explícitamente.
+FUENTES:
+1) Contenido Tenarius (Oficios, Sets, Tenarius Coin, custom): https://tenarius-ro.com/wiki/
+2) RO vanilla Pre-Renewal: irowiki.org, ratemyserver.net (verificar era)
 
-Este asistente es comunitario y NO es oficial de Tenarius RO ni de Gravity / Ragnarok Online.
+REGLAS:
+- Indica SIEMPRE: servidor (Tenarius / iRO oficial / otro privado / desconocido), era (Pre-Renewal o Renewal), y si aplica a Tenarius.
+- Si es Renewal o posterior al Ep. 13.2, DESTÁCALO — puede no existir en Tenarius.
+- NO mezcles wikis genéricas para sistemas custom de Tenarius.
+- Si no estás seguro del servidor o la era, dilo explícitamente.
+- Cita URLs usadas.
+
+No oficial de Tenarius ni Gravity.
 
 Mi pregunta: [escribe aquí tu duda]
 ```
@@ -110,13 +118,32 @@ Guía ampliada: [`docs/USO-IA-WEB.md`](./docs/USO-IA-WEB.md) · Prompt en texto 
 
 ---
 
+## Herramientas MCP
+
+### Tenarius (servidor privado)
+
 | Herramienta | Descripción |
 |---|---|
-| `search_wiki` | Busca artículos por palabra clave |
-| `get_wiki_summary` | Resumen legible en texto plano |
-| `get_wiki_page` | Wikitext completo (tablas, recetas, stats) |
+| `search_wiki` | Busca en wiki Tenarius |
+| `get_wiki_summary` | Resumen legible |
+| `get_wiki_page` | Wikitext completo |
 
-Flujo recomendado: `search_wiki` → `get_wiki_summary` → `get_wiki_page` (si necesitas detalle).
+Flujo: `search_wiki` → `get_wiki_summary` → `get_wiki_page`
+
+### RO vanilla / referencia (Pre-Renewal ~ Ep. 13.2)
+
+| Herramienta | Descripción |
+|---|---|
+| `search_ro_reference` | iRO Wiki + Fandom (sesgo Pre-Renewal) |
+| `get_ro_reference_summary` | Resumen (`source_id`: `irowiki` o `fandom`) |
+| `get_ro_reference_page` | Wikitext de referencia |
+| `search_ro_web` | Referencias + web (opcional `BRAVE_API_KEY`) |
+
+Todas las respuestas incluyen **metadatos de fuente** (servidor, era, aplicabilidad a Tenarius).
+
+Detalle: [`docs/FUENTES-RO.md`](./docs/FUENTES-RO.md)
+
+---
 
 ## Configuración por editor
 
@@ -149,11 +176,23 @@ Instala antes: `pip install -r requirements.txt`
 - Claude Desktop: [`examples/claude-desktop.json`](./examples/claude-desktop.json)
 - OpenCode: [`examples/opencode.jsonc`](./examples/opencode.jsonc)
 
+### Búsqueda web amplia (opcional)
+
+```bash
+export BRAVE_API_KEY="tu-token"   # activa resultados extra en search_ro_web
+```
+
+---
+
 ## Tenarius vs RO original
 
-Este MCP consulta la **wiki de Tenarius** para contenido del servidor (Oficios, Sets crafteados,
-Tenarius Coin, rankings, etc.). Para mecánicas base de RO, la wiki puede no bastar — y Tenarius
-puede tener rates o stats distintos al RO oficial. **Prioriza la wiki de Tenarius** para dudas del servidor.
+| Contenido | Fuente MCP |
+|-----------|------------|
+| Oficios, Sets, Tenarius Coin, custom | Wiki Tenarius |
+| Clases/skills/items vanilla RO | `search_ro_reference` (Pre-Renewal) |
+| ¿Aplica a Tenarius? | Siempre en metadatos — **verificar** si es referencia externa |
+
+Tenarius es **Pre-Renewal (~Ep. 13.2)**. Info **Renewal** o de **otros privados** debe marcarse como tal.
 
 ## Contribuir
 
@@ -169,6 +208,7 @@ tenarius-wiki-mcp/
 ├── docs/
 │   ├── USO-IA-WEB.md      # Guía IA web sin MCP (workaround actual)
 │   ├── PROMPT-IA-WEB.txt  # Prompt reusable
+│   ├── FUENTES-RO.md      # Servidores, eras, atribución
 │   └── ROADMAP.md         # Tasklist / plan MCP hosteado
 ├── src/tenarius_wiki_mcp/
 ├── examples/
